@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const houses_controller4_1 = require("./houses.controller4");
+const router = (0, express_1.Router)();
+router.get("/houses", houses_controller4_1.getAllHouse);
+router.get("/houses/:id", houses_controller4_1.getHouseById);
+router.post("/houses", houses_controller4_1.createHouse);
+router.put("/houses/:id", houses_controller4_1.updateHouse);
+router.patch("/houses/:id", houses_controller4_1.updateHouseFields);
+router.delete("/houses/:id", houses_controller4_1.deleteHouse);
+exports.default = router;

@@ -8,17 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("./app");
-const { PORT } = process.env;
-const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.dbconnect = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+const { URI } = process.env;
+const dbconnect = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        app_1.app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
+        if (!URI) {
+            throw new Error("URI is not defined");
+        }
+        yield mongoose_1.default.connect(URI).then(() => console.log("Database connected"));
     }
-    catch (error) {
-        console.log(error.message);
+    catch (err) {
+        console.error(err.message);
     }
 });
-startServer();
+exports.dbconnect = dbconnect;
