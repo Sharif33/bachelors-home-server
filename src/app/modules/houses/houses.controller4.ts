@@ -11,7 +11,8 @@ import {
 
 export const getAllHouse = async (req: Request, res: Response) => {
   try {
-    const houses = await getAllHousesFromDB();
+    const filters: Record<string, any> = req.query;
+    const houses = await getAllHousesFromDB(filters);
     res.send(houses);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
