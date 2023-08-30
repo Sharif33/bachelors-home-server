@@ -1,0 +1,42 @@
+export interface IHouses {
+  _id: string;
+  images: string[];
+  houseType: string;
+  availableFrom: string;
+  houseSize: number;
+  houseRent: number;
+  rentNegotiable: boolean;
+  serviceCharge: number;
+  bedRoom: number;
+  bathRoom: number;
+  kitchen: number;
+  balcony: number;
+  floor: number;
+  floorType: string;
+  diningSpace: number;
+  attachedWashroom: boolean;
+  lift: boolean;
+  parking: boolean;
+  generator: boolean;
+  security: boolean;
+  cctv: boolean;
+  wifi: boolean;
+  gasBill: number;
+  gasFacility: string;
+  water: boolean;
+  electricity: string;
+  electricityBill: string;
+  description: string;
+  contactNo: string;
+  contactEmail: string;
+  contactAddress: string;
+  contactName: string;
+  preferredGender: string;
+  location: {
+    division: string;
+    district: string;
+    upazilla: string;
+    address: string;
+    googleMapLink: string;
+  };
+}

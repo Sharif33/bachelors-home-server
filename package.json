@@ -1,7 +1,7 @@
 {
   "name": "bachelors-home-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bachelors-Home is a platform for Bangladeshi bachelors to find their ideal home away from home. And for mess owners to find their ideal tenants.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "start": "node ./dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sharif Rashed",
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.13",
