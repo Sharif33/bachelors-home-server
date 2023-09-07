@@ -1,5 +1,5 @@
 export interface IHouses {
-  _id: string;
+  house_id: string;
   images: string[];
   houseType: string;
   availableFrom: string;

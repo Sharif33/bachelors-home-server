@@ -3,6 +3,7 @@ import { IHouses } from "./houses.interface1";
 
 const houseSchema = new Schema(
   {
+    house_id: String,
     images: [String],
     houseType: String,
     availableFrom: String,

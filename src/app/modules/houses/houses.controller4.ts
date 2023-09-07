@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { IHouses } from "./houses.interface1";
+import { Houses } from "./houses.model2";
 import {
   createHouseInDB,
   deleteHouseFromDB,
@@ -36,7 +37,26 @@ export const getHouseById = async (req: Request, res: Response) => {
 
 export const createHouse = async (req: Request, res: Response) => {
   try {
-    const newHouseData: IHouses = req.body;
+    // Find the latest house in the database
+    const latestHouse = await Houses.findOne(
+      {},
+      {},
+      { sort: { house_id: -1 } }
+    );
+
+    let newHouseData: IHouses;
+
+    if (latestHouse) {
+      // If there is a latest house, increment its house_id
+      const latestHouseIdParts = latestHouse.house_id.split("-");
+      const newHouseIdNumber = parseInt(latestHouseIdParts[2]) + 1;
+      const newHouseId = `bh-sh-${newHouseIdNumber}`;
+      newHouseData = { ...req.body, house_id: newHouseId };
+    } else {
+      // If there are no houses in the database, start with bh-sh-1
+      newHouseData = { ...req.body, house_id: "bh-sh-1" };
+    }
+
     const createdHouse = await createHouseInDB(newHouseData);
     res.status(201).json(createdHouse);
   } catch (err: any) {

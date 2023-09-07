@@ -16,11 +16,13 @@ dbconnect();
 
 //import all routes
 import houseRoute from "./app/modules/houses/houses.router5";
+import userRoute from "./app/modules/users/users.router";
 //default route
 app.get("/", (req, res) => {
   res.send("Welcome to Bachelors Home server");
 });
 //custom routes path
 app.use("/api/v1", houseRoute);
+app.use("/api/v1", userRoute);
 
 export { app };
