@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteHouse = exports.updateHouseFields = exports.updateHouse = exports.createHouse = exports.getHouseById = exports.getAllHouse = void 0;
+const houses_model2_1 = require("./houses.model2");
 const houses_service3_1 = require("./houses.service3");
 const getAllHouse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -38,7 +39,20 @@ const getHouseById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getHouseById = getHouseById;
 const createHouse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newHouseData = req.body;
+        // Find the latest house in the database
+        const latestHouse = yield houses_model2_1.Houses.findOne({}, {}, { sort: { house_id: -1 } });
+        let newHouseData;
+        if (latestHouse) {
+            // If there is a latest house, increment its house_id
+            const latestHouseIdParts = latestHouse.house_id.split("-");
+            const newHouseIdNumber = parseInt(latestHouseIdParts[2]) + 1;
+            const newHouseId = `bh-sh-${newHouseIdNumber}`;
+            newHouseData = Object.assign(Object.assign({}, req.body), { house_id: newHouseId });
+        }
+        else {
+            // If there are no houses in the database, start with bh-sh-1
+            newHouseData = Object.assign(Object.assign({}, req.body), { house_id: "bh-sh-1" });
+        }
         const createdHouse = yield (0, houses_service3_1.createHouseInDB)(newHouseData);
         res.status(201).json(createdHouse);
     }

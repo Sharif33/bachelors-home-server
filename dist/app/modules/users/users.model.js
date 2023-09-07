@@ -23,50 +23,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Houses = void 0;
+exports.Users = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const houseSchema = new mongoose_1.Schema({
-    house_id: String,
-    images: [String],
-    houseType: String,
-    availableFrom: String,
-    houseSize: Number,
-    houseRent: Number,
-    rentNegotiable: Boolean,
-    serviceCharge: Number,
-    bedRoom: Number,
-    bathRoom: Number,
-    kitchen: Number,
-    balcony: Number,
-    floor: Number,
-    floorType: String,
-    diningSpace: Number,
-    attachedWashroom: Boolean,
-    lift: Boolean,
-    parking: Boolean,
-    generator: Boolean,
-    security: Boolean,
-    cctv: Boolean,
-    wifi: Boolean,
-    gasBill: Number,
-    gasFacility: String,
-    water: Boolean,
-    electricity: String,
-    electricityBill: String,
-    description: String,
-    contactNo: String,
-    contactEmail: String,
-    contactAddress: String,
-    contactName: String,
-    preferredGender: String,
-    location: {
-        division: String,
-        district: String,
-        upazilla: String,
-        address: String,
-        googleMapLink: String,
-    },
+const userSchema = new mongoose_1.Schema({
+    avatar: String,
+    birthday: String,
+    email: String,
+    fullName: String,
+    gender: String,
+    phone: String,
+    division: String,
+    district: String,
+    upazilla: String,
+    address: String,
 }, {
     timestamps: true,
 });
-exports.Houses = mongoose_1.default.model("House", houseSchema);
+exports.Users = mongoose_1.default.model("User", userSchema);
