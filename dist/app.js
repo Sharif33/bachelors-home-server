@@ -19,6 +19,7 @@ app.use(express_1.default.urlencoded({ extended: false }));
 (0, dbConnect_1.dbconnect)();
 //import all routes
 const houses_router5_1 = __importDefault(require("./app/modules/houses/houses.router5"));
+const rh_router_1 = __importDefault(require("./app/modules/request_houses/rh.router"));
 const users_router_1 = __importDefault(require("./app/modules/users/users.router"));
 //default route
 app.get("/", (req, res) => {
@@ -26,4 +27,5 @@ app.get("/", (req, res) => {
 });
 //custom routes path
 app.use("/api/v1", houses_router5_1.default);
+app.use("/api/v1", rh_router_1.default);
 app.use("/api/v1", users_router_1.default);

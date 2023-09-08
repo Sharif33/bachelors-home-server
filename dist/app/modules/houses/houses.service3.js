@@ -22,7 +22,7 @@ const getAllHousesFromDB = (filters) => __awaiter(void 0, void 0, void 0, functi
 });
 exports.getAllHousesFromDB = getAllHousesFromDB;
 const getHouseByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return houses_model2_1.Houses.find({ _id: id });
+    return houses_model2_1.Houses.find({ house_id: id });
 });
 exports.getHouseByIdFromDB = getHouseByIdFromDB;
 const createHouseInDB = (houseData) => __awaiter(void 0, void 0, void 0, function* () {
