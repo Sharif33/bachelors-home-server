@@ -16,7 +16,7 @@ export const getAllHousesFromDB = async (
 };
 
 export const getHouseByIdFromDB = async (id: string): Promise<IHouses[]> => {
-  return Houses.find({ _id: id });
+  return Houses.find({ house_id: id });
 };
 
 export const createHouseInDB = async (houseData: IHouses): Promise<IHouses> => {

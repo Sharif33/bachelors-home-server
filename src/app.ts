@@ -16,6 +16,7 @@ dbconnect();
 
 //import all routes
 import houseRoute from "./app/modules/houses/houses.router5";
+import reqHouseRoute from "./app/modules/request_houses/rh.router";
 import userRoute from "./app/modules/users/users.router";
 //default route
 app.get("/", (req, res) => {
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 //custom routes path
 app.use("/api/v1", houseRoute);
+app.use("/api/v1", reqHouseRoute);
 app.use("/api/v1", userRoute);
 
 export { app };
