@@ -9,20 +9,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReqHouseFromDB = exports.updateReqHouseFieldsInDB = exports.updateReqHouseInDB = exports.createReqHouseInDB = exports.getReqHouseByIdFromDB = exports.getAllUReqHousesFromDB = void 0;
+exports.deleteReqHouseFromDB = exports.updateReqHouseFieldsInDB = exports.updateReqHouseInDB = exports.createReqHouseCommentInDB = exports.createReqHouseInDB = exports.getReqHouseCommentByIdFromDB = exports.getReqHouseByIdFromDB = exports.getAllUReqHouseCommentsFromDB = exports.getAllUReqHousesFromDB = void 0;
 const rh_model_1 = require("./rh.model");
 const getAllUReqHousesFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     return rh_model_1.ReqHouses.find().sort({ createdAt: -1 });
 });
 exports.getAllUReqHousesFromDB = getAllUReqHousesFromDB;
+const getAllUReqHouseCommentsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    return rh_model_1.ReqHouseComment.find().sort({ createdAt: -1 });
+});
+exports.getAllUReqHouseCommentsFromDB = getAllUReqHouseCommentsFromDB;
 const getReqHouseByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return rh_model_1.ReqHouses.find({ req_house_id: id });
 });
 exports.getReqHouseByIdFromDB = getReqHouseByIdFromDB;
+const getReqHouseCommentByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return rh_model_1.ReqHouseComment.find({ req_house_id: id });
+});
+exports.getReqHouseCommentByIdFromDB = getReqHouseCommentByIdFromDB;
 const createReqHouseInDB = (houseData) => __awaiter(void 0, void 0, void 0, function* () {
     return rh_model_1.ReqHouses.create(houseData);
 });
 exports.createReqHouseInDB = createReqHouseInDB;
+const createReqHouseCommentInDB = (houseData) => __awaiter(void 0, void 0, void 0, function* () {
+    return rh_model_1.ReqHouseComment.create(houseData);
+});
+exports.createReqHouseCommentInDB = createReqHouseCommentInDB;
 const updateReqHouseInDB = (houseId, houseData) => __awaiter(void 0, void 0, void 0, function* () {
     return rh_model_1.ReqHouses.findByIdAndUpdate(houseId, houseData, { new: true });
 });

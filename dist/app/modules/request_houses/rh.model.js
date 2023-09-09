@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReqHouses = void 0;
+exports.ReqHouseComment = exports.ReqHouses = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 // Define the schema for IReqHouses
 const reqHousesSchema = new mongoose_1.Schema({
@@ -46,3 +46,13 @@ const reqHousesSchema = new mongoose_1.Schema({
 });
 // Create the Mongoose model for IReqHouses
 exports.ReqHouses = mongoose_1.default.model("ReqHouses", reqHousesSchema);
+const reqHousesCommentsSchema = new mongoose_1.Schema({
+    req_house_id: String,
+    requester_email: String,
+    requester_name: String,
+    comments: String,
+}, {
+    timestamps: true,
+});
+// Create the Mongoose model for IReqHouses
+exports.ReqHouseComment = mongoose_1.default.model("ReqHouseComments", reqHousesSchema);

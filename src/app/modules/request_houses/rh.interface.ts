@@ -14,3 +14,9 @@ export interface IReqHouses {
   description: string;
   fromDate: string;
 }
+export interface IReqHousesComments {
+  req_house_id: string;
+  requester_email: string;
+  requester_name: string;
+  comments: string;
+}

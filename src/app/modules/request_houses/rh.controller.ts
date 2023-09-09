@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
-import { IReqHouses } from "./rh.interface";
+import { IReqHouses, IReqHousesComments } from "./rh.interface";
 import { ReqHouses } from "./rh.model";
 import {
+  createReqHouseCommentInDB,
   createReqHouseInDB,
   deleteReqHouseFromDB,
+  getAllUReqHouseCommentsFromDB,
   getAllUReqHousesFromDB,
   getReqHouseByIdFromDB,
+  getReqHouseCommentByIdFromDB,
   updateReqHouseFieldsInDB,
   updateReqHouseInDB,
 } from "./rh.service";
@@ -13,6 +16,14 @@ import {
 export const getAllReqHouse = async (req: Request, res: Response) => {
   try {
     const houses = await getAllUReqHousesFromDB();
+    res.send(houses);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const getAllReqHouseComment = async (req: Request, res: Response) => {
+  try {
+    const houses = await getAllUReqHouseCommentsFromDB();
     res.send(houses);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -29,6 +40,30 @@ export const getReqHouseById = async (req: Request, res: Response) => {
     }
 
     res.status(200).json(house);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const getReqHouseCommentById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const house = await getReqHouseCommentByIdFromDB(id);
+
+    if (!house) {
+      return res.status(404).json({ message: "House not found" });
+    }
+
+    res.status(200).json(house);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const createReqHouseComment = async (req: Request, res: Response) => {
+  try {
+    const newUserData: IReqHousesComments = req.body;
+    const createdComment = await createReqHouseCommentInDB(newUserData);
+    res.status(201).json(createdComment);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
